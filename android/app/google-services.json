@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1028757790071",
+    "project_id": "smart-market1",
+    "storage_bucket": "smart-market1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028757790071:android:0ac042ed57ed308e2d1572",
+        "android_client_info": {
+          "package_name": "com.example.smartmarket1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSO9QHigsKHVuXvIAtDfr3gTE1NsqR_Zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
