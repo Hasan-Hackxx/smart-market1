@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Auth/auth_Exceptions.dart';
+import 'package:smartmarket1/Auth/auth_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 import 'package:smartmarket1/components/mytextfield.dart';
 import 'package:smartmarket1/main.dart';
@@ -27,6 +29,61 @@ class _LoginpageState extends State<Loginpage> {
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  void login() async {
+    try {
+      final email = _email.text;
+      final password = _password.text;
+      await AuthService().login(email, password);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } on InvalidCredentialException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Invalid Credential'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    } on InvalidEmailException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Invalid Email'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    } on GerneralException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Unexpexted Error'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -81,15 +138,7 @@ class _LoginpageState extends State<Loginpage> {
 
                 SizedBox(height: 20),
 
-                Mybutton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
-                  },
-                  text: 'Login',
-                ),
+                Mybutton(onPressed: login, text: 'Login'),
 
                 SizedBox(height: 40),
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Auth/auth_Exceptions.dart';
+import 'package:smartmarket1/Auth/auth_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 import 'package:smartmarket1/components/mytextfield.dart';
 import 'package:smartmarket1/main.dart';
@@ -27,6 +29,75 @@ class _RegisterpageState extends State<Registerpage> {
     _email.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  void signup() async {
+    try {
+      final email = _email.text;
+      final password = _password.text;
+      await AuthService().signup(email, password);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } on EmailAlreadyInuseException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('email already in use '),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    } on WeakPasswordException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('weak password'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    } on InvalidEmailException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Invalid Email'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    } on GerneralException {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Unexpexted Error'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text('ok'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -81,15 +152,7 @@ class _RegisterpageState extends State<Registerpage> {
 
                 SizedBox(height: 20),
 
-                Mybutton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
-                  },
-                  text: 'Register',
-                ),
+                Mybutton(onPressed: signup, text: 'Register'),
 
                 SizedBox(height: 40),
 
