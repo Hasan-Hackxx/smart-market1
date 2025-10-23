@@ -7,6 +7,7 @@ class Mydrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.grey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -16,12 +17,18 @@ class Mydrawer extends StatelessWidget {
 
               ListTile(
                 leading: Icon(Icons.home),
-                title: Text('Home'),
+                title: Text(
+                  'Home',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () => Navigator.pop(context),
               ),
               ListTile(
                 leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                title: Text(
+                  'Settings',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -34,7 +41,10 @@ class Mydrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.logout),
-            title: Text('Logout'),
+            title: Text(
+              'Logout',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onTap: () {},
           ),
         ],

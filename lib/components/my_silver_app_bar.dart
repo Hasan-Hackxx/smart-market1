@@ -8,11 +8,19 @@ class MySilverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      backgroundColor: Colors.black,
       title: Padding(
         padding: const EdgeInsets.only(left: 75),
-        child: Text('Home Page', style: TextStyle(fontSize: 20)),
+        child: Text(
+          'Home Page',
+          style: TextStyle(
+            fontSize: 20,
+            color: const Color.fromARGB(255, 255, 63, 127),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      expandedHeight: 100,
+      expandedHeight: 130,
       pinned: true,
       floating: false,
       flexibleSpace: FlexibleSpaceBar(
