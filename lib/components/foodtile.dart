@@ -11,23 +11,49 @@ class Foodtile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                children: [
-                  //food Name
-                  Text(food.name),
-                  //food price
-                  Text('\$' + food.price.toString()),
-                  // food description
-                  Text(food.description),
-                ],
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //food Name
+                    Text(
+                      food.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    //food price
+                    Text(
+                      '\$' + food.price.toString(),
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w900,
+                        color: const Color.fromARGB(255, 160, 159, 159),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    // food description
+                    Text(
+                      food.description,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            // food image
-            Image.asset(food.imagePath),
-          ],
+              // food image,
+              Image.asset(food.imagePath, height: 100, width: 120),
+            ],
+          ),
         ),
       ],
     );
