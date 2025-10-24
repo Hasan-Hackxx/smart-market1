@@ -10,7 +10,7 @@ class Bigstroe {
       name: 'Burger1',
       description:
           'a juucy beef party with metled chedder, letture, tomato, and a hint pf onion and pickle',
-      imagePath: 'images/b2.jpg',
+      imagePath: 'image/burger1.jpg',
       price: 2.00,
       foodgategory: FoodGategory.burgers,
       selectedaddon: [
@@ -21,7 +21,7 @@ class Bigstroe {
       name: 'Burger2',
       description:
           'a juucy beef party with metled chedder, letture, tomato, and a hint pf onion and pickle',
-      imagePath: 'images/b3.jpg',
+      imagePath: 'images/food/b3.jpg',
       price: 2.00,
       foodgategory: FoodGategory.burgers,
       selectedaddon: [
@@ -32,7 +32,7 @@ class Bigstroe {
     Food(
       name: 'Salad1',
       description: 'cut tommato, onion, lemons, banana',
-      imagePath: 'images/s1.jpg',
+      imagePath: 'images/food/s1.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
       selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
@@ -40,7 +40,7 @@ class Bigstroe {
     Food(
       name: 'Salad2',
       description: 'cut tommato, onion, lemons, banana',
-      imagePath: 'images/s2.jpg',
+      imagePath: 'images/food/s2.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
       selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
@@ -48,7 +48,7 @@ class Bigstroe {
     Food(
       name: 'Salad3',
       description: 'cut tommato, onion, lemons, banana',
-      imagePath: 'images/s3.jpg',
+      imagePath: 'images/food/s3.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
       selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
@@ -57,7 +57,7 @@ class Bigstroe {
     Food(
       name: 'drink1',
       description: 'drink juice, ice cream, hot water',
-      imagePath: 'images/d1.jpg',
+      imagePath: 'images/food/d1.jpg',
       price: 1.20,
       foodgategory: FoodGategory.drinks,
       selectedaddon: [Addons(name: 'surprise with the order', price: 5.00)],
@@ -65,7 +65,7 @@ class Bigstroe {
     Food(
       name: 'drink2',
       description: 'drink juice, ice cream, hot water',
-      imagePath: 'images/d2.jpg',
+      imagePath: 'images/food/d2.jpg',
       price: 1.20,
       foodgategory: FoodGategory.drinks,
       selectedaddon: [Addons(name: 'surprise with the order', price: 5.00)],
@@ -73,7 +73,7 @@ class Bigstroe {
     Food(
       name: 'drink2',
       description: 'drink juice, ice cream, hot water',
-      imagePath: 'images/d3.jpg',
+      imagePath: 'images/food/d3.jpg',
       price: 1.20,
       foodgategory: FoodGategory.drinks,
       selectedaddon: [Addons(name: 'surprise with the order', price: 5.00)],
@@ -86,7 +86,7 @@ class Bigstroe {
     Product(
       name: 'Watch1',
       description: 'black watch and brigting',
-      imagePath: 'images/watch.jpg',
+      imagePath: 'image/watch.jpg',
       price: 45000.0,
       productGategory: ProductGategory.watches,
       types: Types.products,
@@ -94,7 +94,7 @@ class Bigstroe {
     Product(
       name: 'Watch2',
       description: 'black watch and brigting',
-      imagePath: 'images/w2.jpg',
+      imagePath: 'images/products/w2.jpg',
       price: 45000.0,
       productGategory: ProductGategory.watches,
       types: Types.products,
@@ -102,7 +102,7 @@ class Bigstroe {
     Product(
       name: 'Watch3',
       description: 'black watch and brigting',
-      imagePath: 'images/w3.jpg',
+      imagePath: 'images/products/w3.jpg',
       price: 45000.0,
       productGategory: ProductGategory.watches,
       types: Types.products,
@@ -111,7 +111,7 @@ class Bigstroe {
     Product(
       name: 'Shoes1',
       description: 'balck shoes and size 40',
-      imagePath: 'images/shoes.jpg',
+      imagePath: 'images/products/shoes.jpg',
       price: 25.0,
       productGategory: ProductGategory.shoes,
       types: Types.products,
@@ -119,7 +119,7 @@ class Bigstroe {
     Product(
       name: 'Shoes2',
       description: 'balck shoes and size 40',
-      imagePath: 'images/sho2.jpg',
+      imagePath: 'images/products/sho2.jpg',
       price: 25.0,
       productGategory: ProductGategory.shoes,
       types: Types.products,
@@ -127,7 +127,7 @@ class Bigstroe {
     Product(
       name: 'Shoes3',
       description: 'balck shoes and size 40',
-      imagePath: 'images/sho3.jpg',
+      imagePath: 'images/products/sho3.jpg',
       price: 25.0,
       productGategory: ProductGategory.shoes,
       types: Types.products,
@@ -136,7 +136,7 @@ class Bigstroe {
     Product(
       name: 'shirt1',
       description: 'black shirt, size 35, for men',
-      imagePath: 'images/shirt.jpg',
+      imagePath: 'image/shirt.jpg',
       price: 10.0,
       productGategory: ProductGategory.shirts,
       types: Types.products,
@@ -144,7 +144,7 @@ class Bigstroe {
     Product(
       name: 'shirt2',
       description: 'black shirt, size 35, for men',
-      imagePath: 'images/sh2.jpg',
+      imagePath: 'images/products/sh2.jpg',
       price: 10.0,
       productGategory: ProductGategory.shirts,
       types: Types.products,
@@ -152,7 +152,7 @@ class Bigstroe {
     Product(
       name: 'shirt3',
       description: 'black shirt, size 35, for men',
-      imagePath: 'images/sh3.jpg',
+      imagePath: 'images/products/sh3.jpg',
       price: 10.0,
       productGategory: ProductGategory.shirts,
       types: Types.products,

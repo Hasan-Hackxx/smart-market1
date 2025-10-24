@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smartmarket1/Pages/getGate.dart';
+import 'package:smartmarket1/components/foodtile.dart';
 import 'package:smartmarket1/components/my_silver_app_bar.dart';
 import 'package:smartmarket1/components/mydrawer.dart';
 import 'package:smartmarket1/components/mytabBar.dart';
+import 'package:smartmarket1/components/producttile.dart';
+import 'package:smartmarket1/components/test.dart';
 import 'package:smartmarket1/firebase_options.dart';
 import 'package:smartmarket1/models/bigStroe.dart';
-import 'package:smartmarket1/models/food.dart';
-import 'package:smartmarket1/models/product.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,14 +80,14 @@ class _HomePageState extends State<HomePage>
               itemCount: Bigstroe().menu1.length,
               itemBuilder: (context, index) {
                 final food = Bigstroe().menu1[index];
-                return ListTile(title: Text(food.name));
+                return Foodtile(food: food, onTap: () {});
               },
             ),
             ListView.builder(
               itemCount: Bigstroe().menu2.length,
               itemBuilder: (context, index) {
                 final product = Bigstroe().menu2[index];
-                return ListTile(title: Text(product.name));
+                return Producttile(onTap: () {}, product: product);
               },
             ),
           ],
