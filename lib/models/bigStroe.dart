@@ -15,6 +15,7 @@ class Bigstroe {
       foodgategory: FoodGategory.burgers,
       selectedaddon: [
         Addons(name: ' double cheese and alote of catchab', price: 1.50),
+        Addons(name: ' double cheese and alote of catchab', price: 1.50),
       ],
     ),
     Food(
@@ -26,6 +27,7 @@ class Bigstroe {
       foodgategory: FoodGategory.burgers,
       selectedaddon: [
         Addons(name: ' double cheese and alote of catchab', price: 1.50),
+        Addons(name: ' double cheese and alote of catchab', price: 1.50),
       ],
     ),
     // salads
@@ -35,7 +37,10 @@ class Bigstroe {
       imagePath: 'foodimg/salad1.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
-      selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
+      selectedaddon: [
+        Addons(name: 'fruits with salad and drink', price: 2.00),
+        Addons(name: ' double cheese and alote of catchab', price: 1.50),
+      ],
     ),
     Food(
       name: 'Salad2',
@@ -43,7 +48,10 @@ class Bigstroe {
       imagePath: 'foodimg/salad2.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
-      selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
+      selectedaddon: [
+        Addons(name: 'fruits with salad and drink', price: 2.00),
+        Addons(name: ' double cheese and alote of catchab', price: 1.50),
+      ],
     ),
     Food(
       name: 'Salad3',
@@ -51,7 +59,10 @@ class Bigstroe {
       imagePath: 'foodimg/salad2.jpg',
       price: 1.00,
       foodgategory: FoodGategory.salads,
-      selectedaddon: [Addons(name: 'fruits with salad and drink', price: 2.00)],
+      selectedaddon: [
+        Addons(name: 'fruits with salad and drink', price: 2.00),
+        Addons(name: ' double cheese and alote of catchab', price: 1.50),
+      ],
     ),
     // drinks
     Food(

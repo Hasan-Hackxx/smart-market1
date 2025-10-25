@@ -12,47 +12,58 @@ class Producttile extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //product name
-                    Text(
-                      product.name,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+          child: GestureDetector(
+            onTap: onTap,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      //product name
+                      Text(
+                        product.name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
-                    ),
-                    //product price
-                    Text(
-                      '\$' + product.price.toString(),
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.w900,
-                        color: const Color.fromARGB(255, 160, 159, 159),
+                      //product price
+                      Text(
+                        '\$' + product.price.toString(),
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w900,
+                          color: const Color.fromARGB(255, 160, 159, 159),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    //product description
-                    Text(
-                      product.description,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 15,
+                      SizedBox(height: 10),
+                      //product description
+                      Text(
+                        product.description,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Image.asset(product.imagePath, height: 100, width: 120),
-            ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Image.asset(
+                    product.imagePath,
+                    height: 100,
+                    width: 150,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+        const Divider(),
       ],
     );
   }

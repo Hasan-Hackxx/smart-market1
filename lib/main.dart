@@ -1,12 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Pages/foodPage.dart';
 import 'package:smartmarket1/Pages/getGate.dart';
 import 'package:smartmarket1/components/foodtile.dart';
 import 'package:smartmarket1/components/my_silver_app_bar.dart';
 import 'package:smartmarket1/components/mydrawer.dart';
 import 'package:smartmarket1/components/mytabBar.dart';
 import 'package:smartmarket1/components/producttile.dart';
-import 'package:smartmarket1/components/test.dart';
 import 'package:smartmarket1/firebase_options.dart';
 import 'package:smartmarket1/models/bigStroe.dart';
 
@@ -80,7 +80,15 @@ class _HomePageState extends State<HomePage>
               itemCount: Bigstroe().menu1.length,
               itemBuilder: (context, index) {
                 final food = Bigstroe().menu1[index];
-                return Foodtile(food: food, onTap: () {});
+                return Foodtile(
+                  food: food,
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Foodpage(food: food),
+                    ),
+                  ),
+                );
               },
             ),
             ListView.builder(
