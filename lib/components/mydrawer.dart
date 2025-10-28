@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Auth/auth_service.dart';
 import 'package:smartmarket1/Pages/settingsPage.dart';
 
 class Mydrawer extends StatelessWidget {
@@ -45,7 +46,30 @@ class Mydrawer extends StatelessWidget {
               'Logout',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            onTap: () {},
+            onTap: () async {
+              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Logout'),
+                  content: Text("Are you sure you want to logout form app!"),
+                  actions: [
+                    TextButton(
+                      onPressed: () async {
+                        Navigator.pop(context);
+
+                        AuthService().logout();
+                      },
+                      child: Text('Yes'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('No'),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

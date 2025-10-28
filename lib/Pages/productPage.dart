@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:smartmarket1/models/food.dart';
+import 'package:smartmarket1/models/product.dart';
 
-class Foodpage extends StatefulWidget {
-  final Food food;
-  final Map<Addons, bool> selectAddon = {};
-  Foodpage({super.key, required this.food}) {
-    for (Addons addon in food.selectedaddon) {
-      selectAddon[addon] = false;
-    }
-  }
+class Productpage extends StatefulWidget {
+  final Product product;
+  const Productpage({super.key, required this.product});
 
   @override
-  State<Foodpage> createState() => _FoodpageState();
+  State<Productpage> createState() => _ProductpageState();
 }
 
-class _FoodpageState extends State<Foodpage> {
+class _ProductpageState extends State<Productpage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -24,13 +19,13 @@ class _FoodpageState extends State<Foodpage> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //food image
+              //product image
               Container(
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 0, 0, 0),
                 ),
                 child: Image.asset(
-                  widget.food.imagePath,
+                  widget.product.imagePath,
                   width: 420,
                   height: 300,
                 ),
@@ -63,7 +58,7 @@ class _FoodpageState extends State<Foodpage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.food.name,
+                      widget.product.name,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -71,9 +66,19 @@ class _FoodpageState extends State<Foodpage> {
                       ),
                     ),
 
-                    //food description
+                    //product price
                     Text(
-                      widget.food.description,
+                      '\$' + widget.product.price.toString(),
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w900,
+                        color: const Color.fromARGB(255, 160, 159, 159),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    //product description
+                    Text(
+                      widget.product.description,
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: const Color.fromARGB(255, 138, 137, 137),
@@ -83,55 +88,7 @@ class _FoodpageState extends State<Foodpage> {
                     const Divider(color: Colors.grey),
                     SizedBox(height: 12),
 
-                    Text(
-                      'Add-ons',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                    ),
-                    SizedBox(height: 15),
-                    //food addons
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: const Color.fromARGB(255, 124, 123, 123),
-                        ),
-                      ),
-                      padding: EdgeInsets.zero,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: widget.food.selectedaddon.length,
-                        itemBuilder: (context, index) {
-                          final addon = widget.food.selectedaddon[index];
-                          return CheckboxListTile(
-                            title: Text(
-                              addon.name,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              '\$' + addon.price.toString(),
-                              style: TextStyle(
-                                fontSize: 19,
-                                fontWeight: FontWeight.w900,
-                                color: const Color.fromARGB(255, 160, 159, 159),
-                              ),
-                            ),
-                            value: widget.selectAddon[addon],
-                            onChanged: (bool? value) {
-                              setState(() {
-                                widget.selectAddon[addon] = value!;
-                              });
-                            },
-                          );
-                        },
-                      ),
-                    ),
+                    //product addons
                   ],
                 ),
               ),
