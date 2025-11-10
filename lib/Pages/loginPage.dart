@@ -3,7 +3,6 @@ import 'package:smartmarket1/Auth/auth_Exceptions.dart';
 import 'package:smartmarket1/Auth/auth_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 import 'package:smartmarket1/components/mytextfield.dart';
-import 'package:smartmarket1/main.dart';
 
 class Loginpage extends StatefulWidget {
   final void Function()? onTap;
@@ -36,11 +35,6 @@ class _LoginpageState extends State<Loginpage> {
       final email = _email.text;
       final password = _password.text;
       await AuthService().login(email, password);
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomePage()),
-      );
     } on InvalidCredentialException {
       showDialog(
         context: context,

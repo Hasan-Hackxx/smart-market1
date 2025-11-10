@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Pages/createproductPage.dart';
 import 'package:smartmarket1/Pages/foodPage.dart';
-import 'package:smartmarket1/Pages/getGate.dart';
 import 'package:smartmarket1/Pages/productPage.dart';
 import 'package:smartmarket1/components/foodtile.dart';
 import 'package:smartmarket1/components/my_silver_app_bar.dart';
@@ -10,10 +10,16 @@ import 'package:smartmarket1/components/mytabBar.dart';
 import 'package:smartmarket1/components/producttile.dart';
 import 'package:smartmarket1/firebase_options.dart';
 import 'package:smartmarket1/models/bigStroe.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Supabase.initialize(
+    url: 'https://rdivizzeucrabgzyisxv.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkaXZpenpldWNyYWJnenlpc3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3NDMxNzQsImV4cCI6MjA3NzMxOTE3NH0.gFOB_G05nIeAEKxk4Wxx5FnZNcjTivlmXxgiXdRRY7Y',
+  );
   runApp(const MyApp());
 }
 
@@ -28,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Getgate(),
+      home: const Createproductpage(),
     );
   }
 }

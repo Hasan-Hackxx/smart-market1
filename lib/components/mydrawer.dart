@@ -52,16 +52,16 @@ class Mydrawer extends StatelessWidget {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: Text('Logout'),
-                  content: Text("Are you sure you want to logout form app!"),
+                  content: Text('Are you sure you want to logout..!'),
                   actions: [
                     TextButton(
                       onPressed: () async {
                         Navigator.pop(context);
-
-                        AuthService().logout();
+                        await AuthService().logout();
                       },
                       child: Text('Yes'),
                     ),
+
                     TextButton(
                       onPressed: () => Navigator.pop(context),
                       child: Text('No'),

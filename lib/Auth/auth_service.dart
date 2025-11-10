@@ -1,18 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smartmarket1/Auth/auth_Exceptions.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   //login method
 
-  Future<UserCredential> login(String email, String password) async {
+  Future<AuthResponse> login(String email, String password) async {
     try {
-      final userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "invalid-credential") {
+      final authResponse = await Supabase.instance.client.auth
+          .signInWithPassword(password: password, email: email);
+      return authResponse;
+    } on AuthException catch (e) {
+      final message = e.message.toLowerCase();
+      if (message.contains('invalid login credential')) {
         throw InvalidCredentialException();
-      } else if (e.code == "invalid-email") {
+      } else if (message.contains('email')) {
         throw InvalidEmailException();
       } else {
         throw GerneralException();
@@ -21,17 +22,22 @@ class AuthService {
   }
 
   //sign up method
-  Future<UserCredential> signup(String email, String password) async {
+  Future<AuthResponse> signup(String email, String password) async {
     try {
-      final userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-
-      return userCredential;
-    } on FirebaseAuthException catch (e) {
-      if (e.code == "email-already-in-use") {
+      final authResponse = await Supabase.instance.client.auth.signUp(
+        password: password,
+        email: email,
+      );
+      return authResponse;
+    } on AuthException catch (e) {
+      print('supabase error: ${e.message}');
+      final message = e.message.toLowerCase();
+      if (message.contains('already registered')) {
         throw EmailAlreadyInuseException();
-      } else if (e.code == "weak-password") {
+      } else if (message.contains('password')) {
         throw WeakPasswordException();
+      } else if (message.contains('email')) {
+        throw InvalidEmailException();
       } else {
         throw GerneralException();
       }
@@ -39,11 +45,6 @@ class AuthService {
   }
 
   Future<void> logout() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      await FirebaseAuth.instance.signOut();
-    } else {
-      throw CouldntLogoutException();
-    }
+    await Supabase.instance.client.auth.signOut();
   }
 }
