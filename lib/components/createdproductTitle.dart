@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:smartmarket1/models/product.dart';
 
-class Producttile extends StatelessWidget {
-  final Product product;
-  final void Function()? onTap;
-  const Producttile({super.key, required this.onTap, required this.product});
+class Createdproducttitle extends StatelessWidget {
+  final String productName;
+  final String productdisc;
+
+  final String imageUrl;
+  final String productprice;
+  final String userId;
+  final bool clothes;
+  final bool food;
+  const Createdproducttitle({
+    super.key,
+    required this.productName,
+    required this.productdisc,
+    required this.imageUrl,
+    required this.productprice,
+    required this.userId,
+    required this.clothes,
+    required this.food,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +27,24 @@ class Producttile extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: GestureDetector(
-            onTap: onTap,
             child: Row(
               children: [
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //product name
+                      //food Name
                       Text(
-                        product.name,
+                        productName,
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
                       ),
-                      //product price
+                      //food price
                       Text(
-                        '\$' + product.price.toString(),
+                        '\$' + productprice.toString(),
                         style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.w900,
@@ -39,9 +52,9 @@ class Producttile extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      //product description
+                      // food description
                       Text(
-                        product.description,
+                        productdisc,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
@@ -51,13 +64,10 @@ class Producttile extends StatelessWidget {
                     ],
                   ),
                 ),
+                // food image,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
-                  child: Image.asset(
-                    product.imagePath,
-                    height: 100,
-                    width: 150,
-                  ),
+                  child: Image.network(imageUrl, height: 100, width: 150),
                 ),
               ],
             ),

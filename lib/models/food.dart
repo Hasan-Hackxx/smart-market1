@@ -20,7 +20,11 @@ enum FoodGategory { burgers, salads, drinks }
 
 class Addons {
   final String name;
-  final double price;
+  final String price;
 
   Addons({required this.name, required this.price});
+
+  Map<String, dynamic> toMap() {
+    return {'addonName': name, 'addonprice': price};
+  }
 }

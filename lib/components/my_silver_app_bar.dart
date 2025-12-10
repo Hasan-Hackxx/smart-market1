@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Pages/myMessages.dart';
 
 class MySilverAppBar extends StatelessWidget {
   final Widget title;
@@ -21,6 +22,16 @@ class MySilverAppBar extends StatelessWidget {
         ),
       ),
       expandedHeight: 130,
+      actions: [
+        IconButton(
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Mymessages()),
+          ),
+          icon: Icon(Icons.message_sharp, color: Colors.white),
+        ),
+      ],
+
       pinned: true,
       floating: false,
       flexibleSpace: FlexibleSpaceBar(

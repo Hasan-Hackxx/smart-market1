@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smartmarket1/models/product.dart';
+import 'package:smartmarket1/Chat/chatPage.dart';
 
 class Productpage extends StatefulWidget {
-  final Product product;
+  final Map<String, dynamic> product;
   const Productpage({super.key, required this.product});
 
   @override
@@ -12,6 +12,7 @@ class Productpage extends StatefulWidget {
 class _ProductpageState extends State<Productpage> {
   @override
   Widget build(BuildContext context) {
+    final item = widget.product;
     return Stack(
       children: [
         //scaffald
@@ -24,11 +25,7 @@ class _ProductpageState extends State<Productpage> {
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 0, 0, 0),
                 ),
-                child: Image.asset(
-                  widget.product.imagePath,
-                  width: 420,
-                  height: 300,
-                ),
+                child: Image.network(item['imageUrl'], width: 420, height: 300),
               ),
 
               Padding(
@@ -37,7 +34,7 @@ class _ProductpageState extends State<Productpage> {
                   children: [
                     //name owner food
                     Text(
-                      'Hasan badour',
+                      item['email'],
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -46,7 +43,19 @@ class _ProductpageState extends State<Productpage> {
                     ),
                     Spacer(),
                     //button to contact with owner
-                    Icon(Icons.message),
+                    IconButton(
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Chatpage(
+                            email: item['email'],
+                            otheruserId: item['ownerId'],
+                            otheruserEmail: item['email'],
+                          ),
+                        ),
+                      ),
+                      icon: Icon(Icons.message, size: 30),
+                    ),
                   ],
                 ),
               ),
@@ -58,7 +67,7 @@ class _ProductpageState extends State<Productpage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.product.name,
+                      item['productName'],
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
@@ -68,7 +77,7 @@ class _ProductpageState extends State<Productpage> {
 
                     //product price
                     Text(
-                      '\$' + widget.product.price.toString(),
+                      '\$' + item['productprice'].toString(),
                       style: TextStyle(
                         fontSize: 19,
                         fontWeight: FontWeight.w900,
@@ -78,7 +87,7 @@ class _ProductpageState extends State<Productpage> {
                     SizedBox(height: 15),
                     //product description
                     Text(
-                      widget.product.description,
+                      item['productdisc'],
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: const Color.fromARGB(255, 138, 137, 137),
