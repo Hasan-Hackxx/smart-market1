@@ -5,14 +5,12 @@ class Chatbubble extends StatelessWidget {
   final bool iscurrentuser;
   final String userId;
   final String otheruserId;
-  final String messageId;
   const Chatbubble({
     super.key,
     required this.message,
     required this.iscurrentuser,
     required this.userId,
     required this.otheruserId,
-    required this.messageId,
   });
 
   @override

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smartmarket1/Pages/cart_page.dart';
+import 'package:smartmarket1/Pages/createproductPage.dart';
 import 'package:smartmarket1/Pages/myMessages.dart';
 
 class MySilverAppBar extends StatelessWidget {
@@ -29,6 +31,15 @@ class MySilverAppBar extends StatelessWidget {
             MaterialPageRoute(builder: (context) => Mymessages()),
           ),
           icon: Icon(Icons.message_sharp, color: Colors.white),
+        ),
+        IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Createproductpage()),
+            );
+          },
+          icon: Icon(Icons.create, color: Colors.white),
         ),
       ],
 

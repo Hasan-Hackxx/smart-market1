@@ -40,6 +40,7 @@ class _ProductListViewState extends State<ProductListView> {
             clothes: product['clothes'],
             food: product['food'],
             imageUrl: product['imageUrl'],
+            messageId: product['messageId'],
           ),
         );
       },

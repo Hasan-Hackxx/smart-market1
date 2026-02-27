@@ -2,11 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/Pages/foodPage.dart';
-import 'package:smartmarket1/Pages/getGate.dart';
 import 'package:smartmarket1/Pages/productPage.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/cloudDatabase/product2_list_View.dart';
 import 'package:smartmarket1/cloudDatabase/product_list_view.dart';
+import 'package:smartmarket1/components/appGate.dart';
 import 'package:smartmarket1/components/my_silver_app_bar.dart';
 import 'package:smartmarket1/components/mydrawer.dart';
 import 'package:smartmarket1/components/mytabBar.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const Getgate(),
+      home: const Appgate(),
     );
   }
 }
@@ -75,9 +75,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    final clouservice = context.read<CloudService>();
     return Scaffold(
       drawer: Mydrawer(),
-
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxisSoterde) => [
           MySilverAppBar(
@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage>
           controller: tabController,
           children: [
             StreamBuilder(
-              stream: CloudService().getallusersproductExcloth(userId),
+              stream: clouservice.getallusersproductExcloth(userId),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage>
               },
             ),
             StreamBuilder(
-              stream: CloudService().getallusersproductExfood(userId),
+              stream: clouservice.getallusersproductExfood(userId),
               builder: (context, snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:

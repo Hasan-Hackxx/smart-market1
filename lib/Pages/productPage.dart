@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
+import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
+import 'package:smartmarket1/main.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Productpage extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -10,9 +13,13 @@ class Productpage extends StatefulWidget {
 }
 
 class _ProductpageState extends State<Productpage> {
+  final email = Supabase.instance.client.auth.currentUser!.email;
+  final userId = Supabase.instance.client.auth.currentUser!.id;
+
   @override
   Widget build(BuildContext context) {
     final item = widget.product;
+    final bool owner = (item['email'] == email);
     return Stack(
       children: [
         //scaffald
@@ -42,20 +49,57 @@ class _ProductpageState extends State<Productpage> {
                       ),
                     ),
                     Spacer(),
+                    if (owner)
+                      IconButton(
+                        onPressed: () async {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              content: Text(
+                                'Are you sure you want to delete this product!',
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    await CloudService().deletefood(
+                                      email,
+                                      item['id'],
+                                    );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text('Yes'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
                     //button to contact with owner
-                    IconButton(
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Chatpage(
-                            email: item['email'],
-                            otheruserId: item['ownerId'],
-                            otheruserEmail: item['email'],
+                    if (!owner)
+                      IconButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Chatpage(
+                              email: item['email'],
+                              otheruserId: item['ownerId'],
+                              otheruserEmail: item['email'],
+                              userId: userId,
+                            ),
                           ),
                         ),
+                        icon: Icon(Icons.message, size: 30),
                       ),
-                      icon: Icon(Icons.message, size: 30),
-                    ),
                   ],
                 ),
               ),
@@ -102,28 +146,29 @@ class _ProductpageState extends State<Productpage> {
                 ),
               ),
               Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 0, 0, 0),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'Send to Cart',
-                        style: TextStyle(
-                          color: Colors.pinkAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17,
+              if (!owner)
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          'Send to Cart',
+                          style: TextStyle(
+                            color: Colors.pinkAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
               SizedBox(height: 5),
               //food name
             ],

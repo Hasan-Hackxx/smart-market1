@@ -39,6 +39,7 @@ class _Product2ListViewState extends State<Product2ListView> {
             clothes: product['clothes'],
             food: product['food'],
             imageUrl: product['imageUrl'],
+            messageId: product['messageId'],
           ),
         );
       },

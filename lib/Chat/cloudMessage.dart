@@ -8,6 +8,7 @@ class Cloudmessage {
   final String sallerId;
   final String custId;
   final Timestamp timestamp;
+  final String chatroomId;
 
   const Cloudmessage({
     required this.message,
@@ -15,6 +16,7 @@ class Cloudmessage {
     required this.sallerId,
     required this.custId,
     required this.timestamp,
+    required this.chatroomId,
   });
 
   Map<String, dynamic> toMap() {
@@ -24,6 +26,7 @@ class Cloudmessage {
       'sallerId': sallerId,
       'custId': custId,
       'timestamp': timestamp,
+      'chatroomId': chatroomId,
     };
   }
 }

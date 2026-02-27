@@ -9,6 +9,7 @@ class Createproduct2title extends StatelessWidget {
   final String userId;
   final bool clothes;
   final bool food;
+  final String messageId;
 
   const Createproduct2title({
     super.key,
@@ -19,6 +20,7 @@ class Createproduct2title extends StatelessWidget {
     required this.userId,
     required this.clothes,
     required this.food,
+    required this.messageId,
   });
 
   @override
@@ -77,6 +79,5 @@ class Createproduct2title extends StatelessWidget {
         const Divider(),
       ],
     );
-    ;
   }
 }

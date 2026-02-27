@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
+import 'package:smartmarket1/main.dart' show HomePage;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Foodpage extends StatefulWidget {
   final Map<String, dynamic> product;
-  final Map<String, bool> selectAddon = {};
+  final Map<String, dynamic> selectAddon = {};
 
   Foodpage({super.key, required this.product});
 
@@ -16,13 +18,30 @@ class Foodpage extends StatefulWidget {
 
 class _FoodpageState extends State<Foodpage> {
   //final Getproducid controller = Get.find();
-
   final email = Supabase.instance.client.auth.currentUser!.email;
+  final userId = Supabase.instance.client.auth.currentUser!.id;
 
   @override
   void initState() {
     super.initState();
     widget.selectAddon.clear();
+  }
+
+  void addTocart(
+    Map<String, dynamic> product,
+    Map<String, dynamic> selectedAddon,
+  ) {
+    List<Map<String, dynamic>> currentselectedAddon = [];
+    for (var entry in widget.selectAddon.entries) {
+      if (entry.value['selected'] == true) {
+        currentselectedAddon.add({
+          'name': entry.value['name'],
+          'price': entry.value['price'],
+        });
+      }
+    }
+
+    context.read<CloudService>().addTocart(product, currentselectedAddon);
   }
 
   @override
@@ -33,6 +52,7 @@ class _FoodpageState extends State<Foodpage> {
 
     final item = widget.product;
     final bool isowner = (item['email'] == email);
+
     return Stack(
       children: [
         //scaffald
@@ -88,10 +108,35 @@ class _FoodpageState extends State<Foodpage> {
 
                         child: IconButton(
                           onPressed: () async {
-                            await CloudService().deletefood(email, item['id']);
-                            // await Supabase.instance.client.storage
-                            //     .from('profiles')
-                            //     .remove([widget.imagepath]);
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                content: Text(
+                                  'Are you sure you want to delete this product!',
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text('Cancel'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      await CloudService().deletefood(
+                                        email,
+                                        item['id'],
+                                      );
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(),
+                                        ),
+                                      );
+                                    },
+                                    child: Text('Yes'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           icon: Icon(Icons.delete),
                         ),
@@ -113,6 +158,7 @@ class _FoodpageState extends State<Foodpage> {
                                   email: item['email'],
                                   otheruserId: item['ownerId'],
                                   otheruserEmail: item['email'],
+                                  userId: userId,
                                 ),
                               ),
                             );
@@ -194,7 +240,11 @@ class _FoodpageState extends State<Foodpage> {
 
                         for (var doc in docs) {
                           final id = doc.id;
-                          widget.selectAddon[id] ??= false;
+                          widget.selectAddon[id] ??= {
+                            'selected': false,
+                            'name': doc['name'],
+                            'price': doc['price'],
+                          };
                         }
 
                         return Container(
@@ -235,11 +285,12 @@ class _FoodpageState extends State<Foodpage> {
                                           ),
                                         ),
                                       ),
-                                      value: widget.selectAddon[id],
+                                      value: widget.selectAddon[id]['selected'],
                                       onChanged: (bool? value) {
                                         setState(() {
                                           if (!isowner) {
-                                            widget.selectAddon[id] = value!;
+                                            widget.selectAddon[id]['selected'] =
+                                                value!;
                                           }
                                         });
                                       },
@@ -271,7 +322,9 @@ class _FoodpageState extends State<Foodpage> {
                   child: Center(
                     child: !isowner
                         ? TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              addTocart(widget.product, widget.selectAddon);
+                            },
                             child: Text(
                               'Send to Cart',
                               style: TextStyle(

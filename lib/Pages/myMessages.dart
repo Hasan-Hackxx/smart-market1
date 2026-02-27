@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/email_message_list_view.dart';
@@ -17,7 +16,11 @@ class _MymessagesState extends State<Mymessages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Messages')),
+      appBar: AppBar(
+        title: Text('Messages'),
+        backgroundColor: Colors.grey,
+        centerTitle: true,
+      ),
       body: Column(
         children: [
           Expanded(
@@ -40,6 +43,7 @@ class _MymessagesState extends State<Mymessages> {
                                 email: email['otheruserEmail'],
                                 otheruserId: email['otheruserId'],
                                 otheruserEmail: email['otheruserEmail'],
+                                userId: email['userId'],
                               ),
                             ),
                           );

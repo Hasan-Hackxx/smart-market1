@@ -8,11 +8,13 @@ class Chatpage extends StatefulWidget {
   final String email;
   final String otheruserId;
   final String otheruserEmail;
+  final String userId;
   const Chatpage({
     super.key,
     required this.email,
     required this.otheruserId,
     required this.otheruserEmail,
+    required this.userId,
   });
 
   @override
@@ -22,32 +24,53 @@ class Chatpage extends StatefulWidget {
 class _ChatpageState extends State<Chatpage> {
   late final TextEditingController message;
 
-  final userId = Supabase.instance.client.auth.currentUser!.id;
+  final currentuserId = Supabase.instance.client.auth.currentUser!.id;
   final email = Supabase.instance.client.auth.currentUser!.email;
+
+  FocusNode myfocusnode = FocusNode();
 
   @override
   void initState() {
     message = TextEditingController();
+
+    if (myfocusnode.hasFocus) {
+      Future.delayed(const Duration(milliseconds: 300), () => scrollDown());
+    }
     super.initState();
   }
 
   @override
   void dispose() {
     message.dispose();
+    myfocusnode.dispose();
     super.dispose();
   }
 
+  ScrollController controller = ScrollController();
+  void scrollDown() {
+    controller.animateTo(
+      controller.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 100),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
   void sendmessage() async {
-    if (message.text.isNotEmpty) {
-      await CloudService().sendMessage(widget.otheruserId, message.text);
+    if (message.text.isNotEmpty && currentuserId == widget.userId) {
+      await CloudService().sendMessage(
+        widget.otheruserId,
+        message.text,
+        widget.otheruserEmail,
+      );
       await CloudService().storePeoplewhotextme(
-        userId,
+        currentuserId,
         email!,
         widget.otheruserEmail,
         widget.otheruserId,
       );
+      message.clear();
     }
-    message.clear();
+    scrollDown();
   }
 
   @override
@@ -62,21 +85,24 @@ class _ChatpageState extends State<Chatpage> {
         children: [
           Expanded(
             child: StreamBuilder(
-              stream: CloudService().getMessage(userId, widget.otheruserId),
+              stream: CloudService().getMessage(
+                currentuserId,
+                widget.otheruserId,
+              ),
               builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                  case ConnectionState.active:
-                    if (snapshot.hasData) {
-                      final messages = snapshot.data!;
+                if (!snapshot.hasData) {
+                  return const SizedBox.shrink();
+                }
 
-                      return MessageListView(messages: messages);
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
+                if (snapshot.hasData) {
+                  final messages = snapshot.data!;
 
-                  default:
-                    return Center(child: CircularProgressIndicator());
+                  return MessageListView(
+                    messages: messages,
+                    controller: controller,
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
                 }
               },
             ),

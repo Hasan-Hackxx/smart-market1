@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartmarket1/Auth/auth_service.dart';
+import 'package:smartmarket1/Pages/cart_page.dart';
+import 'package:smartmarket1/Pages/myProfile.dart';
 import 'package:smartmarket1/Pages/settingsPage.dart';
 
 class Mydrawer extends StatelessWidget {
@@ -24,6 +26,21 @@ class Mydrawer extends StatelessWidget {
                 ),
                 onTap: () => Navigator.pop(context),
               ),
+
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Myprofile()),
+                  );
+                },
+              ),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text(
@@ -35,6 +52,20 @@ class Mydrawer extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => Settingspage()),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.shopping_cart),
+                title: Text(
+                  'Cart',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CartPage()),
                   );
                 },
               ),

@@ -9,6 +9,7 @@ class Createdproducttitle extends StatelessWidget {
   final String userId;
   final bool clothes;
   final bool food;
+  final String messageId;
   const Createdproducttitle({
     super.key,
     required this.productName,
@@ -18,6 +19,7 @@ class Createdproducttitle extends StatelessWidget {
     required this.userId,
     required this.clothes,
     required this.food,
+    required this.messageId,
   });
 
   @override

@@ -5,18 +5,22 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MessageListView extends StatelessWidget {
   final QuerySnapshot messages;
-  const MessageListView({super.key, required this.messages});
+  final ScrollController controller;
+  const MessageListView({
+    super.key,
+    required this.messages,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      controller: controller,
       itemCount: messages.docs.length,
       itemBuilder: (context, index) {
         final message = messages.docs[index];
         final bool iscurrentuser =
             message['custId'] == Supabase.instance.client.auth.currentUser!.id;
-
-        final messageId = message.id;
 
         var alignment = iscurrentuser
             ? Alignment.centerRight
@@ -34,7 +38,6 @@ class MessageListView extends StatelessWidget {
                 iscurrentuser: iscurrentuser,
                 userId: message['custId'],
                 otheruserId: message['sallerId'],
-                messageId: messageId,
               ),
             ],
           ),
