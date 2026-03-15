@@ -51,6 +51,7 @@ dependencies:
   intl: ^0.20.2
   connectivity_plus: ^7.0.0
   http: ^1.6.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

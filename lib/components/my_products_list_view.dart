@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/components/myproducttitle.dart';
 
 class MyProductsListView extends StatelessWidget {
@@ -12,7 +13,7 @@ class MyProductsListView extends StatelessWidget {
       return Center(
         child: Text(
           'Thers is no products yet!',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),
         ),
       );
     }
@@ -25,7 +26,7 @@ class MyProductsListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(10.0),
           child: SizedBox(
-            width: 200,
+            width: 200.w,
 
             child: Myproducttitle(
               image: products['imageUrl'],

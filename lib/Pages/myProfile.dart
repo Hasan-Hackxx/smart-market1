@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/my_products_list_view.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -23,7 +24,7 @@ class _MyprofileState extends State<Myprofile> {
       ),
       body: Column(
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 50.h),
           Container(
             decoration: BoxDecoration(
               color: Colors.grey,
@@ -31,19 +32,19 @@ class _MyprofileState extends State<Myprofile> {
             ),
             child: Column(children: [Icon(Icons.person, size: 150)]),
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 50.h),
           Text(
             'My Name: $userEmail',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25.sp),
           ),
 
-          SizedBox(height: 30),
+          SizedBox(height: 30.h),
 
           Divider(),
 
           Text(
             'My prdoucts:',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.sp),
           ),
           StreamBuilder(
             stream: CloudService().getmyproducts(userId),

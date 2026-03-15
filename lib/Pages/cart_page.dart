@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/Pages/payment_page.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
@@ -53,7 +54,7 @@ class _CartPageState extends State<CartPage> {
               );
             },
           ),
-          SizedBox(height: 25),
+          SizedBox(height: 25.h),
         ],
       ),
     );

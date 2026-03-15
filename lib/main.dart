@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/Pages/foodPage.dart';
 import 'package:smartmarket1/Pages/productPage.dart';
@@ -25,9 +26,13 @@ void main() async {
   // Get.put(Getproducid(), permanent: true);
   //Get.put(Getproducid());
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CloudService(),
-      child: const MyApp(),
+    ScreenUtilInit(
+      designSize: Size(360, 690),
+      minTextAdapt: true,
+      builder: (context, child) => ChangeNotifierProvider(
+        create: (context) => CloudService(),
+        child: MyApp(),
+      ),
     ),
   );
 }

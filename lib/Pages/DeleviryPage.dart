@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
 import 'package:smartmarket1/Pages/MyRecipet.dart';
@@ -74,7 +75,7 @@ class _DelevirypageState extends State<Delevirypage> {
             child: IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
           ),
 
-          const SizedBox(width: 10),
+          SizedBox(width: 10.w),
 
           // 🧠 النص المرن (الحل هنا)
           Expanded(
@@ -93,7 +94,7 @@ class _DelevirypageState extends State<Delevirypage> {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 14, // ❗ كان 48 وهذا سبب المصيبة
+                    fontSize: 14.sp, // ❗ كان 48 وهذا سبب المصيبة
                     fontWeight: FontWeight.w600,
                     color: Color.fromARGB(255, 129, 129, 129),
                   ),
@@ -125,7 +126,7 @@ class _DelevirypageState extends State<Delevirypage> {
                   icon: const Icon(Icons.message),
                 ),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,

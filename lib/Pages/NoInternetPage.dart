@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Nointernetpage extends StatefulWidget {
   const Nointernetpage({super.key});
@@ -16,8 +17,8 @@ class _NointernetpageState extends State<Nointernetpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.wifi_off, size: 80),
-            SizedBox(height: 16),
+            Icon(Icons.wifi_off, size: 80.w),
+            SizedBox(height: 16.h),
             Text('No Internet connextion'),
           ],
         ),

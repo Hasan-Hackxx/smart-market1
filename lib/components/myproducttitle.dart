@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Pages/EditmyinfoproductsPagert.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -29,21 +30,21 @@ class Myproducttitle extends StatelessWidget {
         decoration: BoxDecoration(color: Colors.grey),
         child: Column(
           children: [
-            Image.network(image!, height: 150, width: 150),
+            Image.network(image!, height: 150, width: 150.w),
 
             Text(
               'name: $productName',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 25.h),
 
             Text(
               'price: $productPrice',
               style: TextStyle(fontWeight: FontWeight.w600),
             ),
 
-            SizedBox(height: 25),
+            SizedBox(height: 25.h),
 
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -87,6 +88,7 @@ class Myproducttitle extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () async {
+                              Navigator.pop(context);
                               await CloudService().deletefood(email, productId);
                             },
                             child: Text('Yes'),

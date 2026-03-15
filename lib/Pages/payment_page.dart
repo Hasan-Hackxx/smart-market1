@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Pages/DeleviryPage.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 
@@ -92,7 +93,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
           Spacer(),
           Mybutton(text: 'pay Now', onPressed: userTapped),
-          SizedBox(height: 25),
+          SizedBox(height: 25.h),
         ],
       ),
     );

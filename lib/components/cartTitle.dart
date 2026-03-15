@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/cart_item.dart';
@@ -28,11 +29,11 @@ class _CarttitleState extends State<Carttitle> {
               ClipRRect(
                 child: Image.network(
                   widget.cartitem.product['imageUrl'],
-                  height: 100,
-                  width: 100,
+                  height: 100.h,
+                  width: 100.w,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,7 +41,7 @@ class _CarttitleState extends State<Carttitle> {
                   Text('\$' + widget.cartitem.product['productprice']),
                 ],
               ),
-              SizedBox(width: 70),
+              SizedBox(width: 70.w),
               Myquainityselector(
                 quaintity: widget.cartitem.quaintity,
                 onIncrement: () {
@@ -61,8 +62,8 @@ class _CarttitleState extends State<Carttitle> {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              height: widget.cartitem.selectAddon.isEmpty ? 0 : 60,
-              width: double.infinity,
+              height: widget.cartitem.selectAddon.isEmpty ? 0 : 60.h,
+              width: double.infinity.w,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: widget.cartitem.selectAddon
@@ -74,13 +75,13 @@ class _CarttitleState extends State<Carttitle> {
                             children: [
                               //addon name
                               Text(addon['name']),
-                              SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               //addon price
                               Text(
                                 '\$' + addon['price'].toString(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 12,
+                                  fontSize: 12.sp,
                                 ),
                               ),
                             ],
@@ -92,7 +93,7 @@ class _CarttitleState extends State<Carttitle> {
                           backgroundColor: Colors.amber,
                           labelStyle: TextStyle(
                             color: Colors.black,
-                            fontSize: 13,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ),

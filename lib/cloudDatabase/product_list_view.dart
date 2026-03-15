@@ -33,14 +33,14 @@ class _ProductListViewState extends State<ProductListView> {
             widget.onTap(product);
           },
           title: Createdproducttitle(
-            productName: product['productName'],
-            productdisc: product['productdisc'],
-            productprice: product['productprice'],
+            productName: product['productName'] ?? '',
+            productdisc: product['productdisc'] ?? '',
+            productprice: product['productprice'] ?? '',
             userId: userId,
-            clothes: product['clothes'],
-            food: product['food'],
-            imageUrl: product['imageUrl'],
-            messageId: product['messageId'],
+            clothes: product['clothes'] ?? false,
+            food: product['food'] ?? false,
+            imageUrl: product['imageUrl'] ?? '',
+            messageId: product['messageId'] ?? '',
           ),
         );
       },

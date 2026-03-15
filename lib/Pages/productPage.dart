@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/main.dart';
@@ -6,7 +8,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Productpage extends StatefulWidget {
   final Map<String, dynamic> product;
-  const Productpage({super.key, required this.product});
+  final Map<String, dynamic> selectAddon = {};
+
+  Productpage({super.key, required this.product});
 
   @override
   State<Productpage> createState() => _ProductpageState();
@@ -15,6 +19,29 @@ class Productpage extends StatefulWidget {
 class _ProductpageState extends State<Productpage> {
   final email = Supabase.instance.client.auth.currentUser!.email;
   final userId = Supabase.instance.client.auth.currentUser!.id;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.selectAddon.clear();
+  }
+
+  void addTocart(
+    Map<String, dynamic> product,
+    Map<String, dynamic> selectedAddon,
+  ) {
+    List<Map<String, dynamic>> currentselectedAddon = [];
+    for (var entry in widget.selectAddon.entries) {
+      if (entry.value['selected'] == true) {
+        currentselectedAddon.add({
+          'name': entry.value['name'],
+          'price': entry.value['price'],
+        });
+      }
+    }
+
+    context.read<CloudService>().addTocart(product, currentselectedAddon);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +59,11 @@ class _ProductpageState extends State<Productpage> {
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 0, 0, 0),
                 ),
-                child: Image.network(item['imageUrl'], width: 420, height: 300),
+                child: Image.network(
+                  item['imageUrl'],
+                  width: 420.w,
+                  height: 300.h,
+                ),
               ),
 
               Padding(
@@ -45,7 +76,7 @@ class _ProductpageState extends State<Productpage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
-                        fontSize: 20,
+                        fontSize: 20.sp,
                       ),
                     ),
                     Spacer(),
@@ -113,7 +144,7 @@ class _ProductpageState extends State<Productpage> {
                     Text(
                       item['productName'],
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.sp,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
@@ -123,23 +154,23 @@ class _ProductpageState extends State<Productpage> {
                     Text(
                       '\$' + item['productprice'].toString(),
                       style: TextStyle(
-                        fontSize: 19,
+                        fontSize: 19.sp,
                         fontWeight: FontWeight.w900,
                         color: const Color.fromARGB(255, 160, 159, 159),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 15.h),
                     //product description
                     Text(
                       item['productdisc'],
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         color: const Color.fromARGB(255, 138, 137, 137),
-                        fontSize: 18,
+                        fontSize: 18.sp,
                       ),
                     ),
                     const Divider(color: Colors.grey),
-                    SizedBox(height: 12),
+                    SizedBox(height: 12.h),
 
                     //product addons
                   ],
@@ -155,21 +186,32 @@ class _ProductpageState extends State<Productpage> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Send to Cart',
-                          style: TextStyle(
-                            color: Colors.pinkAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
+                      child: !owner
+                          ? TextButton(
+                              onPressed: () {
+                                addTocart(widget.product, widget.selectAddon);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'item was added to cart successfully!',
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Send to Cart',
+                                style: TextStyle(
+                                  color: Colors.pinkAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17.sp,
+                                ),
+                              ),
+                            )
+                          : null,
                     ),
                   ),
                 ),
-              SizedBox(height: 5),
+              SizedBox(height: 5.h),
               //food name
             ],
           ),

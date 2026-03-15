@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/models/food.dart';
 
 class Myquainityselector extends StatelessWidget {
@@ -33,7 +34,7 @@ class Myquainityselector extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
 
             child: SizedBox(
-              width: 20,
+              width: 20.w,
               child: Center(child: Text(quaintity.toString())),
             ),
           ),

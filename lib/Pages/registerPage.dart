@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Auth/auth_Exceptions.dart';
 import 'package:smartmarket1/Auth/auth_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
@@ -36,6 +37,8 @@ class _RegisterpageState extends State<Registerpage> {
       final password = _password.text;
       await AuthService().signup(email, password);
     } on EmailAlreadyInuseException {
+      if (!mounted) return;
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -50,6 +53,8 @@ class _RegisterpageState extends State<Registerpage> {
         ),
       );
     } on WeakPasswordException {
+      if (!mounted) return;
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -64,6 +69,8 @@ class _RegisterpageState extends State<Registerpage> {
         ),
       );
     } on InvalidEmailException {
+      if (!mounted) return;
+
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -78,6 +85,7 @@ class _RegisterpageState extends State<Registerpage> {
         ),
       );
     } on GerneralException {
+      if (!mounted) return;
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -102,7 +110,7 @@ class _RegisterpageState extends State<Registerpage> {
         centerTitle: true,
         title: Text(
           'Login',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.sp),
         ),
         backgroundColor: Colors.grey,
       ),
@@ -114,13 +122,13 @@ class _RegisterpageState extends State<Registerpage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.lock_open, size: 100),
-                SizedBox(height: 15),
+                SizedBox(height: 15.h),
                 Text(
                   'Welcome to Smartmarket',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w900,
-                    fontSize: 25,
+                    fontSize: 25.sp,
                   ),
                 ),
                 Text(
@@ -128,27 +136,27 @@ class _RegisterpageState extends State<Registerpage> {
                   style: TextStyle(
                     color: const Color.fromARGB(255, 255, 0, 0),
                     fontWeight: FontWeight.w900,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                   ),
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 25.h),
                 Mytextfield(
                   controller: _email,
                   hintText: 'Email',
                   obscureText: false,
                 ),
-                SizedBox(height: 25),
+                SizedBox(height: 25.h),
                 Mytextfield(
                   controller: _password,
                   hintText: 'Password',
                   obscureText: true,
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 20.h),
 
                 Mybutton(onPressed: signup, text: 'Register'),
 
-                SizedBox(height: 40),
+                SizedBox(height: 40.h),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -167,7 +175,7 @@ class _RegisterpageState extends State<Registerpage> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                         ),
                       ),
                     ),

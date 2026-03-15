@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 
@@ -19,7 +20,7 @@ class MyRecipet extends StatelessWidget {
           children: [
             Text(
               'thank your for your oreder...!',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
             ),
             Container(
               decoration: BoxDecoration(
@@ -34,7 +35,7 @@ class MyRecipet extends StatelessWidget {
                   resturant.displaycartResciept(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     color: Colors.black,
                   ),
                 ),

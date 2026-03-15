@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
@@ -131,8 +132,8 @@ class _EditmyinfoproductspagertState extends State<Editmyinfoproductspagert> {
             Row(
               children: [
                 SizedBox(
-                  height: 130,
-                  width: 130,
+                  height: 130.h,
+                  width: 130.w,
 
                   child: _imageUrl != null
                       ? Image.network(_imageUrl!, fit: BoxFit.cover)
@@ -152,24 +153,24 @@ class _EditmyinfoproductspagertState extends State<Editmyinfoproductspagert> {
               ],
             ),
 
-            SizedBox(height: 30),
+            SizedBox(height: 30.h),
             Mytextfield(controller: name, hintText: 'Name', obscureText: false),
 
-            SizedBox(height: 15),
+            SizedBox(height: 15.h),
 
             Mytextfield(
               controller: price,
               hintText: 'Price',
               obscureText: false,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 15.h),
 
             Mytextfield(
               controller: desc,
               hintText: 'Description',
               obscureText: false,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 15.h),
 
             Align(
               alignment: Alignment.centerLeft,
@@ -178,7 +179,7 @@ class _EditmyinfoproductspagertState extends State<Editmyinfoproductspagert> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 15.h),
 
             StreamBuilder(
               stream: CloudService().userInfo
@@ -221,7 +222,7 @@ class _EditmyinfoproductspagertState extends State<Editmyinfoproductspagert> {
                               obscureText: false,
                             ),
                           ),
-                          SizedBox(width: 20),
+                          SizedBox(width: 20.w),
                           Expanded(
                             child: Mytextfield(
                               controller: addonspiceControllers[index],
@@ -234,8 +235,6 @@ class _EditmyinfoproductspagertState extends State<Editmyinfoproductspagert> {
                     );
                   }),
                 );
-
-                return CircularProgressIndicator();
               },
             ),
             Spacer(),

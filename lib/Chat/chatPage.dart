@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Chat/message_list_View.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/mytextfield.dart';
@@ -127,7 +128,7 @@ class _ChatpageState extends State<Chatpage> {
               obscureText: false,
             ),
           ),
-          SizedBox(width: 15),
+          SizedBox(width: 15.w),
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,

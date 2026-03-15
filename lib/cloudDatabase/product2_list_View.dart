@@ -32,14 +32,14 @@ class _Product2ListViewState extends State<Product2ListView> {
             widget.onTap(product);
           },
           title: Createproduct2title(
-            productName: product['productName'],
-            productdisc: product['productdisc'],
-            productprice: product['productprice'],
+            productName: product['productName'] ?? '',
+            productdisc: product['productdisc'] ?? '',
+            productprice: product['productprice'] ?? '',
             userId: userId,
-            clothes: product['clothes'],
-            food: product['food'],
-            imageUrl: product['imageUrl'],
-            messageId: product['messageId'],
+            clothes: product['clothes'] ?? false,
+            food: product['food'] ?? false,
+            imageUrl: product['imageUrl'] ?? '',
+            messageId: product['messageId'] ?? '',
           ),
         );
       },

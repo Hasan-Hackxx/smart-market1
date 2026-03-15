@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 import 'package:smartmarket1/components/mytextfield.dart';
@@ -57,20 +58,20 @@ class _MoreioptionsState extends State<Moreioptions> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 15.h),
             Mytextfield(
               controller: addons,
               hintText: 'Your Addons:',
               obscureText: false,
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Mytextfield(
               controller: price,
               hintText: 'Price',
               obscureText: false,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Row(
               children: [
                 Mybutton(

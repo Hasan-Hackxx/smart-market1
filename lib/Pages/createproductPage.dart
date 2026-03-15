@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/moreioptions.dart';
@@ -20,6 +21,7 @@ class _CreateproductpageState extends State<Createproductpage> {
 
   bool clothes = false;
   bool food = false;
+  String? producttype;
   String? _imagepath2;
 
   late final TextEditingController productName;
@@ -115,8 +117,8 @@ class _CreateproductpageState extends State<Createproductpage> {
             child: StatefulBuilder(
               builder: (context, setDialogState) {
                 return Container(
-                  width: 300,
-                  height: 800,
+                  width: 300.w,
+                  height: 800.h,
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -129,17 +131,17 @@ class _CreateproductpageState extends State<Createproductpage> {
                         Text(
                           'Your Information',
                           style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 20.h),
 
                         Column(
                           children: [
                             SizedBox(
-                              height: 150,
-                              width: 150,
+                              height: 150.h,
+                              width: 150.w,
 
                               child: _imageUrl != null
                                   ? Image.network(_imageUrl!, fit: BoxFit.cover)
@@ -151,7 +153,7 @@ class _CreateproductpageState extends State<Createproductpage> {
                                     ),
                             ),
 
-                            SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             Row(
                               children: [
                                 Container(
@@ -185,7 +187,7 @@ class _CreateproductpageState extends State<Createproductpage> {
                                   ),
                                 ),
 
-                                SizedBox(width: 20),
+                                SizedBox(width: 20.w),
 
                                 Container(
                                   decoration: BoxDecoration(
@@ -224,52 +226,62 @@ class _CreateproductpageState extends State<Createproductpage> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 25),
+                            SizedBox(height: 25.h),
 
                             Mytextfield(
                               controller: productName,
                               hintText: 'Product Name',
                               obscureText: false,
                             ),
-                            SizedBox(height: 15),
+                            SizedBox(height: 15.h),
                             Mytextfield(
                               controller: productDiscrp,
                               hintText: 'Description',
                               obscureText: false,
                             ),
-                            SizedBox(height: 15),
+                            SizedBox(height: 15.h),
 
                             Mytextfield(
                               controller: productprice,
                               hintText: 'Price',
                               obscureText: false,
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             const Text(
                               'choose one type of your product!',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 10.h),
                             Column(
                               children: [
-                                CheckboxListTile(
-                                  title: Text('Food'),
-                                  value: food,
-                                  onChanged: (newValue) {
-                                    setDialogState(() {
-                                      food = newValue!;
-                                    });
-                                  },
-                                ),
+                                Column(
+                                  children: [
+                                    RadioListTile<String>(
+                                      title: const Text('Food'),
+                                      value: 'food',
+                                      groupValue: producttype,
+                                      onChanged: (value) {
+                                        setDialogState(() {
+                                          producttype = value;
+                                          food = true;
+                                          clothes = false;
+                                        });
+                                      },
+                                    ),
 
-                                CheckboxListTile(
-                                  title: Text('Clothes'),
-                                  value: clothes,
-                                  onChanged: (newValue) {
-                                    setDialogState(() {
-                                      clothes = newValue!;
-                                    });
-                                  },
+                                    RadioListTile<String>(
+                                      title: const Text('Clothes'),
+                                      value: 'clothes',
+                                      groupValue: producttype,
+                                      onChanged: (value) {
+                                        setDialogState(() {
+                                          producttype = value;
+                                          clothes = true;
+                                          food = false;
+                                        });
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -290,7 +302,7 @@ class _CreateproductpageState extends State<Createproductpage> {
 
                             //   child: Text('Next'),
                             // ),
-                            SizedBox(height: 20),
+                            SizedBox(height: 20.h),
                             Row(
                               children: [
                                 TextButton(
@@ -398,7 +410,7 @@ class _CreateproductpageState extends State<Createproductpage> {
                                   },
                                   child: Text('Next'),
                                 ),
-                                SizedBox(width: 100),
+                                SizedBox(width: 100.w),
                                 TextButton(
                                   onPressed: () async {
                                     final userId = Supabase
@@ -457,67 +469,67 @@ class _CreateproductpageState extends State<Createproductpage> {
               Text(
                 'W',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: const Color.fromARGB(255, 251, 255, 0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'E',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: const Color.fromARGB(255, 255, 17, 0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'L',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: const Color.fromARGB(255, 255, 0, 200),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'C',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: const Color.fromARGB(255, 17, 0, 255),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'O',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'M',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: const Color.fromARGB(255, 51, 255, 0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(width: 10),
+              SizedBox(width: 10.w),
 
               Text(
                 'E',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   color: Colors.orange,
                   fontWeight: FontWeight.bold,
                 ),
@@ -533,7 +545,7 @@ class _CreateproductpageState extends State<Createproductpage> {
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 15.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -550,14 +562,14 @@ class _CreateproductpageState extends State<Createproductpage> {
                   child: Text(
                     'Seller',
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 19.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
                 ),
               ),
-              SizedBox(width: 100),
+              SizedBox(width: 100.w),
               Container(
                 decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 240, 90, 240),
@@ -572,7 +584,7 @@ class _CreateproductpageState extends State<Createproductpage> {
                   child: Text(
                     'Customer',
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 19.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Createdproducttitle extends StatelessWidget {
   final String productName;
@@ -39,7 +40,7 @@ class Createdproducttitle extends StatelessWidget {
                       Text(
                         productName,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -48,19 +49,19 @@ class Createdproducttitle extends StatelessWidget {
                       Text(
                         '\$' + productprice.toString(),
                         style: TextStyle(
-                          fontSize: 19,
+                          fontSize: 19.sp,
                           fontWeight: FontWeight.w900,
                           color: const Color.fromARGB(255, 160, 159, 159),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 10.h),
                       // food description
                       Text(
                         productdisc,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
-                          fontSize: 15,
+                          fontSize: 15.sp,
                         ),
                       ),
                     ],
@@ -69,7 +70,7 @@ class Createdproducttitle extends StatelessWidget {
                 // food image,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(25),
-                  child: Image.network(imageUrl, height: 100, width: 150),
+                  child: Image.network(imageUrl, height: 100.h, width: 150.w),
                 ),
               ],
             ),

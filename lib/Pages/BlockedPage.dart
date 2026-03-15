@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BlockedPage extends StatelessWidget {
   const BlockedPage({super.key});
@@ -14,27 +15,27 @@ class BlockedPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(Icons.block, size: 100, color: Colors.red.shade700),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               Text(
                 "🚫 التطبيق غير متاح",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 28,
+                  fontSize: 28.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.red.shade900,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 "عذرًا، هذا التطبيق غير متاح في بلدك حالياً.\n"
                 "يمكنك استخدامه فقط في البلدان المسموح بها.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 16.sp,
                   color: Colors.red.shade800.withOpacity(0.8),
                 ),
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade700,

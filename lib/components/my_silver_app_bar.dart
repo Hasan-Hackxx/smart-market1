@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Pages/cart_page.dart';
 import 'package:smartmarket1/Pages/createproductPage.dart';
 import 'package:smartmarket1/Pages/myMessages.dart';
@@ -17,13 +18,13 @@ class MySilverAppBar extends StatelessWidget {
         child: Text(
           'Home Page',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             color: const Color.fromARGB(255, 255, 63, 127),
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      expandedHeight: 130,
+      expandedHeight: 130.h,
       actions: [
         IconButton(
           onPressed: () => Navigator.push(
