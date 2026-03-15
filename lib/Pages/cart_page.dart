@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smartmarket1/Pages/payment_page.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
 import 'package:smartmarket1/components/cartTitle.dart';
+import 'package:smartmarket1/components/cart_item.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 
 class CartPage extends StatefulWidget {
@@ -14,6 +15,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  CartItem? _cartitem;
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CloudService>().cart;
@@ -32,6 +34,7 @@ class _CartPageState extends State<CartPage> {
                     itemCount: cart.length,
                     itemBuilder: (context, index) {
                       final cartitem = cart[index];
+                      _cartitem = cartitem;
                       return Carttitle(cartitem: cartitem);
                     },
                   ),
@@ -49,6 +52,7 @@ class _CartPageState extends State<CartPage> {
                   builder: (context) => PaymentPage(
                     otheruserEmail: firstproduct['email'],
                     otheruserId: firstproduct['ownerId'],
+                    cartItem: _cartitem!,
                   ),
                 ),
               );

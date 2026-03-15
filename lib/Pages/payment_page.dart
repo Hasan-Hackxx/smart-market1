@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:smartmarket1/Pages/DeleviryPage.dart';
+import 'package:smartmarket1/components/cart_item.dart';
 import 'package:smartmarket1/components/mybutton.dart';
 
 class PaymentPage extends StatefulWidget {
   final String otheruserEmail;
   final String otheruserId;
+  final CartItem cartItem;
   const PaymentPage({
     super.key,
     required this.otheruserEmail,
     required this.otheruserId,
+    required this.cartItem,
   });
 
   @override
@@ -55,6 +58,7 @@ class _PaymentPageState extends State<PaymentPage> {
                     builder: (context) => Delevirypage(
                       otheruserEmail: widget.otheruserEmail,
                       otheruserId: widget.otheruserId,
+                      cartItem: widget.cartItem,
                     ),
                   ),
                 );

@@ -4,16 +4,19 @@ import 'package:provider/provider.dart';
 import 'package:smartmarket1/Chat/chatPage.dart';
 import 'package:smartmarket1/Pages/MyRecipet.dart';
 import 'package:smartmarket1/cloudDatabase/cloud_service.dart';
+import 'package:smartmarket1/components/cart_item.dart';
 import 'package:smartmarket1/main.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Delevirypage extends StatefulWidget {
   final String otheruserEmail;
   final String otheruserId;
+  final CartItem cartItem;
   const Delevirypage({
     super.key,
     required this.otheruserEmail,
     required this.otheruserId,
+    required this.cartItem,
   });
 
   @override
@@ -21,12 +24,20 @@ class Delevirypage extends StatefulWidget {
 }
 
 class _DelevirypageState extends State<Delevirypage> {
+  bool? _svedorder;
   @override
   void initState() {
     super.initState();
 
     String reciept = context.read<CloudService>().displaycartResciept();
     CloudService().saveorder(reciept);
+    setState(() {
+      _svedorder = true;
+    });
+
+    if (_svedorder == true) {
+      context.read<CloudService>().clearcart();
+    }
   }
 
   final email = Supabase.instance.client.auth.currentUser!.email;
