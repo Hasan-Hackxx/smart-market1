@@ -12,6 +12,7 @@ import 'package:smartmarket1/components/my_silver_app_bar.dart';
 import 'package:smartmarket1/components/mydrawer.dart';
 import 'package:smartmarket1/components/mytabBar.dart';
 import 'package:smartmarket1/firebase_options.dart';
+import 'package:smartmarket1/notification/notification_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -22,9 +23,11 @@ void main() async {
     anonKey:
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkaXZpenpldWNyYWJnenlpc3h2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE3NDMxNzQsImV4cCI6MjA3NzMxOTE3NH0.gFOB_G05nIeAEKxk4Wxx5FnZNcjTivlmXxgiXdRRY7Y',
   );
-  // await GetStorage.init();
-  // Get.put(Getproducid(), permanent: true);
-  //Get.put(Getproducid());
+
+  await NotificationService().initialize();
+  await NotificationService().requestPermissions();
+  NotificationService().getAndroidToken();
+
   runApp(
     ScreenUtilInit(
       designSize: Size(360, 690),
